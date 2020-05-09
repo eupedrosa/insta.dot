@@ -42,6 +42,6 @@ install_sys_bin
 
 REPO="https://github.com/eupedrosa/insta.dot.git"
 BASE="$HOME/.local/insta.dot"
-fetch_repo "eupedrosa/insta.dot" $BASE
+fetch_repo $REPO $BASE
 install_neovim $BASE
 
