@@ -1,0 +1,29 @@
+
+# Path to oh-my-zsh installation.
+export SHELL=/usr/bin/zsh
+export ZSH="$HOME/.config/oh-my-zsh"
+# Path to fzf installation.
+export FZF_BASE="$HOME/.local/fzf"
+# Always use vim
+export EDITOR=vim
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
+DISABLE_AUTO_UPDATE="true"
+
+if [[ -n $SSH_CONNECTION ]]; then
+    # Do not start tmux if on a remote terminal
+    ZSH_TMUX_AUTOSTART=false
+    ZSH_TMUX_AUTOQUIT=false
+else
+    ZSH_TMUX_AUTOSTART=true
+    ZSH_TMUX_AUTOCONNECT=true
+    ZSH_TMUX_AUTOQUIT=true
+fi
+
+ZSH_TMUX_CONFIG=~/.config/tmux/tmux.conf
+ZSH_TMUX_UNICODE=true
+
+plugins=(common-aliases gitfast fzf docker sudo tmux)
+
+source $ZSH/oh-my-zsh.sh
+source ~/.config/p10k/p10k.zsh
