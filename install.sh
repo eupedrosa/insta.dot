@@ -62,7 +62,7 @@ function install_zsh {
 
     local ZSH=$HOME/.config/oh-my-zsh
     if [[ ! -d $ZSH ]]; then
-        sh -c "ZSH=$ZSH;RUNZSH=no;KEEP_ZSHRC=yes;$(curl -fLo https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        sh -c "ZSH=$ZSH;RUNZSH=no;KEEP_ZSHRC=yes;$(curl -fsSl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH/custom/themes/powerlevel10k
     fi
 }
