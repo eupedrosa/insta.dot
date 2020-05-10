@@ -75,7 +75,7 @@ function install_tmux {
         git clone --depth=1 https://github.com/tmux-plugins/tpm $PLUGDST
     fi
 
-    local SRC="$3/tmux/tmux.conf"
+    local SRC="$1/tmux/tmux.conf"
     local DST="$HOME/.config/tmux/tmux.conf"
     if [[ -f $DST ]]; then
         echo -e "\034[0;33mThe dotfile 'tmux.conf' already exist, will create a backup.\033[0m"
