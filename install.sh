@@ -22,7 +22,7 @@ function fetch_repo {
 }
 
 function install_neovim {
-    echo -e "\033[0;32mInstalling neovim 'init.vim'\033[0m"
+    echo -e "\033[0;32mInstalling neovim 'init.vim'...\033[0m"
 
     local SRC="$1/neovim/init.vim"
     local DST="$HOME/.config/nvim/init.vim"
@@ -39,8 +39,7 @@ function install_neovim {
 }
 
 function install_zsh {
-    echo -e "\033[0;32mInstalling zshel (with ohmyzsh and powerlevel10k)\033[0m"
-
+    echo -e "\033[0;32mInstalling zshel (with ohmyzsh and powerlevel10k)...\033[0m"
 
     local SRC_ZSH="$1/zsh/zshrc"
     local DST_ZSH="$HOME/.zshrc"
@@ -62,9 +61,29 @@ function install_zsh {
 
     local ZSH=$HOME/.config/oh-my-zsh
     if [[ ! -d $ZSH ]]; then
-        sh -c "ZSH=$ZSH;RUNZSH=no;KEEP_ZSHRC=yes;$(curl -fsSl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        sh -c "ZSH=$ZSH;RUNZSH=no;KEEP_ZSHRC=yes;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH/custom/themes/powerlevel10k
     fi
+}
+
+function install_tmux {
+    echo -e "\033[0;32mInstalling 'tmux.conf'...\033[0m"
+
+    local PLUGDST=$HOME/.config/tmux/plugins/tpm
+    if [[ ! -d $PLUGDST ]]; then
+        mkdir -p $HOME/.config/tmux/plugins
+        git clone --depth=1 https://github.com/tmux-plugins/tpm $PLUGDST
+    fi
+
+    local SRC="$3/tmux/tmux.conf"
+    local DST="$HOME/.config/tmux/tmux.conf"
+    if [[ -f $DST ]]; then
+        echo -e "\034[0;33mThe dotfile 'tmux.conf' already exist, will create a backup.\033[0m"
+        mv "$DST" "$DST.backup"
+    fi
+
+    ln -s $SRC $DST
+    TMUX_PLUGIN_MANAGER_PATH=$HOME/.config/tmux/plugins $PLUGDST/bin/install_plugins
 }
 
 install_sys_bin
@@ -74,4 +93,5 @@ BASE="$HOME/.local/insta.dot"
 fetch_repo $REPO $BASE
 install_neovim $BASE
 install_zsh $BASE
+install_tmux $BASE
 
