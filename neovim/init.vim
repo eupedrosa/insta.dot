@@ -97,6 +97,8 @@ augroup opt
     autocmd InsertEnter * call deoplete#enable()
     autocmd InsertEnter,InsertLeave * set cul!
     autocmd FileType tagbar,nerdtree setlocal signcolumn=no
+    " Quit if NERDTree is the last window
+    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.IsOpen()) | q | endif
 augroup END
 
 """"""""""""
