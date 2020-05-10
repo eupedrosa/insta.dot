@@ -20,13 +20,14 @@ Plug 'mhinz/vim-signify'
 Plug 'ntpeters/vim-better-whitespace'
 " Autocompletion
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'Shougo/echodoc.vim', {'for' : 'python'}
+Plug 'deoplete-plugins/deoplete-jedi', {'for': 'python'}
 " Text editing
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 " Colors
 Plug 'arcticicestudio/nord-vim'
 call plug#end()
@@ -46,8 +47,13 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
 " Visual
 colorscheme nord
-let g:lightline = {'colorscheme':'nord'}
+let g:lightline = {
+    \'colorscheme':'nord',
+    \'active': { 'left' : [['mode','paste'],['gbranch','readonly','filename','modified']]},
+    \'component_function': {'gbranch':'FugitiveHead'}
+\}
 
+set noshowmode
 set scrolloff=10        " Keep 10 lines below the last line when scrolling
 set display=lastline    " Show as much as posible of the last line
 set ruler               " Show cursor position in status line
