@@ -5,7 +5,7 @@ export ZSH="$HOME/.config/oh-my-zsh"
 # Path to fzf installation.
 export FZF_BASE="$HOME/.local/fzf"
 # Always use vim
-export EDITOR=vim
+export EDITOR=nvim
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 DISABLE_AUTO_UPDATE="true"
@@ -27,3 +27,10 @@ plugins=(common-aliases gitfast fzf docker sudo tmux)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.config/p10k/p10k.zsh
+
+alias sudo='sudo '
+alias vi=nvim
+alias vim=nvim
+alias vimdiff=nvim -d
+alias ls='ls -h --color=auto --group-directories-first'
+alias pbcopy='xclip -selection clipboard'
