@@ -8,7 +8,6 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 
 call plug#begin()
-Plug 'dstein64/vim-startuptime'
 " File navigaton
 Plug 'junegunn/fzf', {'dir': '~/.local/fzf', 'do': {->fzf#install()}}
 Plug 'junegunn/fzf.vim', {'on': ['Files', 'Buffers', 'Lines', 'Ag']}
@@ -43,7 +42,9 @@ set shiftwidth=4
 set hidden
 set noswapfile
 set updatetime=1000
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+set wildignore+=*.o,*.pyc,*.git,*.hg,*.svn,*.bst,*.aux,*.cls,
+            \*.fls,*.fdb_labexmk,build/**,lib/**,bin/**,
+            \*/build/*,*/devel/*
 
 " Visual
 colorscheme nord
@@ -73,11 +74,14 @@ set completeopt=noinsert,menuone,noselect
 let NERDTreeMinimalUI=1
 let NERDTreeWinPos=1
 let NERDTreeQuitOnOpen=1
+let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
+let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 
 " White Spaces
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
+let g:better_whitespace_filetypes_blacklist = ['diff', 'gitcommit', 'help', 'markdown']
 
 " Deoplete
 let g:deoplete#enable_at_startup = 0
