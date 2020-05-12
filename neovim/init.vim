@@ -51,7 +51,7 @@ set wildignore+=*.o,*.pyc,*.git,*.hg,*.svn,*.bst,*.aux,*.cls,
 colorscheme nord
 let g:lightline = {
     \'colorscheme':'nord',
-    \'active': { 'left' : [['mode','paste'],['gbranch','readonly','filename','modified']]},
+    \'active': { 'left' : [['mode','spell','paste'],['gbranch','readonly','filename','modified']]},
     \'component_function': {'gbranch':'FugitiveHead'}
 \}
 
