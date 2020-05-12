@@ -28,6 +28,8 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'lervag/vimtex', {'for':'tex'}
+Plug 'dbmrq/vim-bucky', {'for':'tex'}
 " Colors
 Plug 'arcticicestudio/nord-vim'
 call plug#end()
@@ -105,6 +107,16 @@ let g:jedi#completions_enabled = 0
 " FZF
 let g:fzf_preview_window = ''
 
+" vimtex
+" For reverse search to work with neovim you must install neovim-remote
+" `pip3 install neovim-remote`
+let g:tex_flavor = 'latex'
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_quickfix_open_on_warning=0
+let g:vimtex_latexmk_progname = 'nvr'
+let g:vimtex_compiler_latexmk = {'build_dir':'build'}
+let g:vimtex_imaps_leader = "'"
+
 """""""""""""""""
 " Auto commands "
 """""""""""""""""
@@ -115,6 +127,9 @@ augroup opt
     autocmd FileType tagbar,nerdtree setlocal signcolumn=no
     " Quit if NERDTree is the last window
     autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.IsOpen()) | q | endif
+    " tex
+    autocmd FileType tex setlocal tw=99 cc=100
+    autocmd FileType tex nnoremap <buffer> <silent> <leader>ft :<c-u>call vimtex#fzf#run('ct', {'down':'~40%'})<cr>
 augroup END
 
 """"""""""""
@@ -158,4 +173,7 @@ nnoremap <silent> <leader>v :<c-u>NERDTreeFind<cr>
 nnoremap <silent> <leader>ff :<c-u>Files<cr>
 nnoremap <silent> <leader>fb :<c-u>Buffers<cr>
 nnoremap <silent> <leader>fl :<c-u>Lines<cr>
+
+nnoremap <silent> <space> :<c-u>SignifyHunkDiff<cr>
+nnoremap <silent> dh :<c-u>SignifyHunkUndo<cr>
 
