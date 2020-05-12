@@ -23,6 +23,7 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/echodoc.vim', {'for' : 'python'}
 Plug 'deoplete-plugins/deoplete-jedi', {'for': 'python'}
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
 " Text editing
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -90,6 +91,17 @@ call deoplete#custom#option('auto_complete_delay', 100)
 let g:echodoc_enable_at_startup = 1
 let g:echodoc#type = 'floating'
 
+" Jedi
+let g:jedi#usages_command = "<localleader>u"
+let g:jedi#goto_command = "<localleader>d"
+let g:jedi#goto_assignments_command = "<localleader>g"
+let g:jedi#goto_stubs_command = "<localleader>s"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<localleader>n"
+let g:jedi#rename_command = "<localleader>r"
+let g:jedi#completions_enabled = 0
+
 " FZF
 let g:fzf_preview_window = ''
 
@@ -109,6 +121,7 @@ augroup END
 " Mappings "
 """"""""""""
 let mapleader=','
+let maplocalleader='\'
 
 imap « {
 imap » }
