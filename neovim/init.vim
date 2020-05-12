@@ -143,6 +143,11 @@ imap » }
 " Quick? exit to normal mode
 imap jk <esc>
 
+" Quick window close with 'q'.
+" Use 'Q' instead to start recording macros.
+nnoremap q <c-w>c
+nnoremap Q q
+
 " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
 inoremap <c-c> <ESC>
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
