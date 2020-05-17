@@ -1,0 +1,13 @@
+# Ignore everything in the root
+*
+# Whitelist
+!*/
+# files
+!.gitignore
+!.zshrc
+# directories
+!/.config/alacritty/**
+!/.config/nvim/**
+!/.config/p10k/**
+!/.config/tmux/**
+!/.config/zathura/**
