@@ -11,6 +11,7 @@ call plug#begin()
 " File navigaton
 Plug 'junegunn/fzf', {'dir': '~/.local/fzf', 'do': {->fzf#install()}}
 Plug 'junegunn/fzf.vim', {'on': ['Files', 'Buffers', 'Lines', 'Ag']}
+Plug 'alok/notational-fzf-vim', {'on': 'NV'}
 Plug 'scrooloose/nerdtree',    {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'ryanoasis/vim-devicons', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 " Visual cues
@@ -28,6 +29,7 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-markdown'
 Plug 'lervag/vimtex', {'for':'tex'}
 Plug 'dbmrq/vim-bucky', {'for':'tex'}
 " Colors
@@ -116,6 +118,11 @@ let g:vimtex_quickfix_open_on_warning=0
 let g:vimtex_latexmk_progname = 'nvr'
 let g:vimtex_compiler_latexmk = {'build_dir':'build'}
 let g:vimtex_imaps_leader = "'"
+
+" Note taking
+let g:nv_search_paths = ['~/notes', './notes']
+" Add syntax highligh to coodebloks in markdown
+let g:markdown_fenced_languages = ['python', 'bash=sh']
 
 """""""""""""""""
 " Auto commands "
