@@ -1,0 +1,42 @@
+#!/bin/bash
+
+set -e errexit
+set -o nounset
+
+if ! [ -x "$(command -v git)" ]; then
+    echo 'Error: git is not installed.' >&2
+    exit 1
+fi
+
+if ! [ -x "$(command -v curl)" ]; then
+    echo 'Error: git is not installed.' >&2
+    exit 1
+fi
+
+cd $HOME
+
+# dotfiles repo
+git clone --bare git@github.com:eupedrosa/insta.dot.git .config/dot
+
+# Install oh-my-zsh
+ZSH=$HOME/.config/oh-my-zsh
+sh -c "ZSH=$ZSH;CHSH=no;RUNZSH=no;KEEP_ZSHRC=yes;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH/custom/themes/powerlevel10
+
+# Install tmux
+git clone --depth=1 https://github.com/tmux-plugins/tpm .config/tmux/plugins
+TMUX_PLUGIN_MANAGER_PATH=.config/tmux/plugins .config/tmux/plugins/tpm/bin/install_plugins
+
+##
+
+function config {
+    /usr/bin/git --git-dir=$HOME/.config/dot --work-tree=$HOME $@
+}
+mkdir -p .config-backup
+config checkout &> /dev/null || {
+    echo "Backing up pre-existing dot files.";
+    config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} sh -c '{ mkdir -p .config-backup/`dirname {}`; mv {} .config-backup/{}; }'
+    config checkout
+}
+
+config config status.showUntrackedFiles no
