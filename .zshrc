@@ -31,6 +31,7 @@ source ~/.config/p10k/p10k.zsh
 
 unsetopt autocd
 
+alias config='git --git-dir=$HOME/.config/dot --work-tree=$HOME '
 alias sudo='sudo '
 alias vi=nvim
 alias vim=nvim
