@@ -29,6 +29,8 @@ plugins=(common-aliases gitfast fzf docker sudo tmux)
 source $ZSH/oh-my-zsh.sh
 source ~/.config/p10k/p10k.zsh
 
+unsetopt autocd
+
 alias sudo='sudo '
 alias vi=nvim
 alias vim=nvim
