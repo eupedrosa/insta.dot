@@ -1,6 +1,6 @@
 
 export SHELL=/usr/bin/zsh
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.bin:$HOME/.local/bin:$PATH
 # Path to oh-my-zsh installation.
 export ZSH="$HOME/.config/oh-my-zsh"
 # Path to fzf installation.
