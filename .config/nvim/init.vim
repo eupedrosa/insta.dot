@@ -22,7 +22,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'Shougo/echodoc.vim', {'for' : 'python'}
 Plug 'deoplete-plugins/deoplete-jedi', {'for': 'python'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 " Text editing
