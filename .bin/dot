@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+# Quick access to configuration files using fzf.
+
+set -e errexit
+
+if ! [ -x "$(command -v fzf)" ]; then
+    echo "Error: 'fzf' is not installed." >&2
+    exit 1
+fi
+
+function config {
+    /usr/bin/git --git-dir=$HOME/.config/dot --work-tree=$HOME $@
+}
+
+FILE=$(config ls-files $HOME --full-name | fzf --height=20% --layout=reverse)
+nvim $HOME/$FILE
