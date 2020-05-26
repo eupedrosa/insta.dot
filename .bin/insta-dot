@@ -22,8 +22,9 @@ git clone --bare git@github.com:eupedrosa/insta.dot.git .config/dot
 
 # Install oh-my-zsh
 ZSH=$HOME/.config/oh-my-zsh
+ZSH_CUSTOM=$HOME/.config/oh-my-zsh-custom
 sh -c "ZSH=$ZSH;CHSH=no;RUNZSH=no;KEEP_ZSHRC=yes;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH/custom/themes/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
 # Install tmux
 git clone --depth=1 https://github.com/tmux-plugins/tpm .config/tmux/plugins/tpm
