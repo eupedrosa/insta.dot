@@ -49,8 +49,12 @@ set updatetime=1000
 set wildignore+=*.o,*.pyc,*.git,*.hg,*.svn,*.bst,*.aux,*.cls,
             \*.fls,*.fdb_labexmk,build/**,lib/**,bin/**,
             \*/build/*,*/devel/*
+set wildignore+=*.egg-info,__pycache__
 
 " Visual
+let g:nord_cursor_line_number_background = 1
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
 colorscheme nord
 let g:lightline = {
     \'colorscheme':'nord',
@@ -78,6 +82,7 @@ set completeopt=noinsert,menuone,noselect
 let NERDTreeMinimalUI=1
 let NERDTreeWinPos=1
 let NERDTreeQuitOnOpen=1
+let NERDTreeRespectWildIgnore=1
 let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 
