@@ -141,6 +141,7 @@ augroup opt
     " tex
     autocmd FileType tex setlocal tw=99 cc=100
     autocmd FileType tex nnoremap <buffer> <silent> <leader>ft :<c-u>call vimtex#fzf#run('ct', {'down':'~40%'})<cr>
+    autocmd BufReadPre *.tex let b:vimtex_main = 'main.tex'
 augroup END
 
 """"""""""""
