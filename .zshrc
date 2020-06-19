@@ -9,7 +9,6 @@ export FZF_BASE="$HOME/.local/fzf"
 # Always use vim
 export EDITOR=nvim
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
 DISABLE_AUTO_UPDATE="true"
 
 if [[ -n $SSH_CONNECTION ]]; then
@@ -28,7 +27,8 @@ ZSH_TMUX_UNICODE=true
 plugins=(common-aliases gitfast fzf fzf-extra docker sudo tmux)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.config/p10k/p10k.zsh
+
+eval $(starship init zsh)
 
 unsetopt autocd
 
