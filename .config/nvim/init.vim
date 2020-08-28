@@ -54,8 +54,10 @@ set wildignore+=*.egg-info,__pycache__
 " Visual
 let g:nord_cursor_line_number_background = 1
 let g:nord_italic = 1
-let g:nord_italic_comments = 1
 colorscheme nord
+hi Normal guibg=NONE ctermbg=NONE
+set termguicolors
+
 let g:lightline = {
     \'colorscheme':'nord',
     \'active': { 'left' : [['mode','spell','paste'],['gbranch','readonly','filename','modified']]},
