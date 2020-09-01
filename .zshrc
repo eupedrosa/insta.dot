@@ -11,20 +11,10 @@ export EDITOR=nvim
 
 DISABLE_AUTO_UPDATE="true"
 
-if [[ -n $SSH_CONNECTION ]]; then
-    # Do not start tmux if on a remote terminal
-    ZSH_TMUX_AUTOSTART=false
-    ZSH_TMUX_AUTOQUIT=false
-else
-    ZSH_TMUX_AUTOSTART=true
-    ZSH_TMUX_AUTOCONNECT=true
-    ZSH_TMUX_AUTOQUIT=true
-fi
-
 ZSH_TMUX_CONFIG=~/.config/tmux/tmux.conf
 ZSH_TMUX_UNICODE=true
 
-plugins=(common-aliases gitfast fzf fzf-extra docker sudo tmux)
+plugins=(common-aliases git fzf fzf-extra docker sudo)
 
 source $ZSH/oh-my-zsh.sh
 
