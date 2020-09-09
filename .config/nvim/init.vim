@@ -19,11 +19,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ntpeters/vim-better-whitespace'
 " Autocompletion
-Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'deoplete-plugins/deoplete-jedi', {'for': 'python'}
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
+
 " Text editing
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -33,7 +32,11 @@ Plug 'lervag/vimtex', {'for':'tex'}
 Plug 'dbmrq/vim-bucky', {'for':'tex'}
 " Colors
 Plug 'arcticicestudio/nord-vim'
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 call plug#end()
+
+let mapleader=','
+let maplocalleader='\'
 
 " Edit Options
 set autoindent
@@ -94,23 +97,53 @@ let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
 let g:better_whitespace_filetypes_blacklist = ['diff', 'gitcommit', 'help', 'markdown']
 
-" Deoplete
-let g:deoplete#enable_at_startup = 0
-let g:deoplete#sources#jedi#show_docstring=1
-call deoplete#custom#option('auto_complete_delay', 100)
-let g:echodoc_enable_at_startup = 1
-let g:echodoc#type = 'floating'
+" == Conquer of Completion ==
+let g:coc_global_extensions = ['coc-json', 'coc-snippets', 'coc-python']
+let g:coc_snippet_next = '<tab>'
 
-" Jedi
-let g:jedi#usages_command = "<localleader>u"
-let g:jedi#goto_command = "<localleader>d"
-let g:jedi#goto_assignments_command = "<localleader>g"
-let g:jedi#goto_stubs_command = "<localleader>s"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<localleader>n"
-let g:jedi#rename_command = "<localleader>r"
-let g:jedi#completions_enabled = 0
+" Map <tab> for trigger completion, completion confirm, snippet expand and jump like VSCode.
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? coc#_select_confirm() :
+  \ coc#expandableOrJumpable() ?
+  \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use + and - to navigate diagnostics
+nmap <silent> + <Plug>(coc-diagnostic-prev)
+nmap <silent> - <Plug>(coc-diagnostic-next)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endfunction
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+" Apply quick fix
+nmap <leader>qf <Plug>(coc-fix-current)
+nmap <leader>cr <Plug>(coc-refactor)
+
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " FZF
 let g:fzf_preview_window = ''
@@ -135,7 +168,6 @@ let g:markdown_fenced_languages = ['python', 'bash=sh']
 """""""""""""""""
 augroup opt
     autocmd!
-    autocmd InsertEnter * call deoplete#enable()
     autocmd InsertEnter,InsertLeave * set cul!
     autocmd FileType tagbar,nerdtree setlocal signcolumn=no
     " Quit if NERDTree is the last window
@@ -149,8 +181,6 @@ augroup END
 """"""""""""
 " Mappings "
 """"""""""""
-let mapleader=','
-let maplocalleader='\'
 
 imap « {
 imap » }
