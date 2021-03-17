@@ -5,7 +5,6 @@ insta.dot - Install my dotfiles!
 Before installing you must have installed in our system the following programs:
   * git
   * curl
-  * tmux
   * zsh
   
 ## Install
