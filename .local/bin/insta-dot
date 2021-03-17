@@ -12,7 +12,6 @@ function command_exist {
 
 command_exist git
 command_exist curl
-command_exist tmux
 command_exist zsh
 
 cd $HOME
@@ -20,19 +19,7 @@ cd $HOME
 # dotfiles repo
 git clone --bare git@github.com:eupedrosa/insta.dot.git .config/dot
 
-# Install oh-my-zsh
-ZSH=$HOME/.config/oh-my-zsh
-ZSH_CUSTOM=$HOME/.config/oh-my-zsh-custom
-sh -c "ZSH=$ZSH;CHSH=no;RUNZSH=no;KEEP_ZSHRC=yes;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-curl -fsSL https://starship.rs/install.sh | bash
-
-# Install tmux
-git clone --depth=1 https://github.com/tmux-plugins/tpm .config/tmux/plugins/tpm
-TMUX_PLUGIN_MANAGER_PATH=.config/tmux/plugins .config/tmux/plugins/tpm/bin/install_plugins
-
 ##
-
 function config {
     /usr/bin/git --git-dir=$HOME/.config/dot --work-tree=$HOME $@
 }

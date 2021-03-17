@@ -10,7 +10,7 @@ Before installing you must have installed in our system the following programs:
 ## Install
 Install the dotfiles in your $HOME by running:
 ```bash
-curl -Lks https://raw.githubusercontent.com/eupedrosa/insta.dot/master/.bin/insta-dot | /bin/bash
+curl -Lks https://raw.githubusercontent.com/eupedrosa/insta.dot/master/.local/bin/insta-dot | /bin/bash
 ```
 
 ## License
