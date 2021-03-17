@@ -9,9 +9,9 @@ endif
 
 call plug#begin()
 " File navigaton
-Plug 'junegunn/fzf', {'dir': '~/.local/fzf', 'do': {->fzf#install()}}
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim', {'on': ['Files', 'Buffers', 'Lines', 'Ag']}
-Plug 'alok/notational-fzf-vim', {'on': 'NV'}
+" Plug 'alok/notational-fzf-vim', {'on': 'NV'}
 Plug 'scrooloose/nerdtree',    {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'ryanoasis/vim-devicons', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 " Visual cues
@@ -19,7 +19,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ntpeters/vim-better-whitespace'
 " Autocompletion
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 
