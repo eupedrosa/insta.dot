@@ -10,8 +10,8 @@ endif
 call plug#begin()
 " File navigaton
 Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim', {'on': ['Files', 'Buffers', 'Lines', 'Ag']}
-" Plug 'alok/notational-fzf-vim', {'on': 'NV'}
+Plug 'junegunn/fzf.vim', {'on': ['Files', 'Buffers', 'Lines']}
+
 Plug 'scrooloose/nerdtree',    {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'ryanoasis/vim-devicons', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 " Visual cues
