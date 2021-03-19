@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# required for xfce settings to work
+xfsettingsd &
+# power management
+xfce4-power-manager &
+
+# automatically lock the screen after suspend
+xss-lock -- betterlockscreen -l &
+
+# load wallpaper
+nitrogen --restore &
+
+# Compositor
+picom -b &
+
+# asks for sudo password when needed
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# manage crypto stuff
+gnome-keyring-daemon --start --components=pkcs11 &
+
+# systray
+nm-applet &
+volumeicon &
+
+# screen energy
+xset dpms 600 900 1200
+# keyboard rate
+xset r rate 350 60
