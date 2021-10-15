@@ -204,11 +204,12 @@ ttyctl -f
 compinit -u -d "$compfile"
 
 # initialize prompt with a decent built-in theme
-promptinit
-prompt adam1
+#promptinit
+#prompt adam1
 
 # Use starship if available
 [[ -x "$(command -v starship)" ]] && eval $(starship init zsh)
 
 # Bind fzf keys if available
-[[ -x "$(command -v fzf)" ]] && [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+[[ -x "$(command -v fzf)" ]] && [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]] \
+    && source /usr/share/doc/fzf/examples/key-bindings.zsh
